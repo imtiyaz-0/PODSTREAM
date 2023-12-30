@@ -1,8 +1,28 @@
-import useState from "react";
-import styled from "styled-components";
+import {useState} from "react";
+import styled, { ThemeProvider } from "styled-components";
+import {lightTheme , darkTheme} from "./utils/Themes";
+import "./index.css";
+import Sidebar from "./components/Sidebar";
+
+
+const Container  = styled.div`
+display: flex;
+background: ${({ theme })=> theme.bg};
+width: 100%;
+height: 100vh;
+overfloe-x:hidden;
+overflow-y:hidden;
+`;
 function App() {
   const [darkMode , setDardMode] = useState(true);
-  return  <div >  PodStream </div>;
+  return  (
+  
+  <ThemeProvider theme  = {darkMode ? darkTheme : lightTheme}>
+  <Container > 
+    <Sidebar/>
+     PodStream </Container>
+  </ThemeProvider>
+  )
   
 }
 
