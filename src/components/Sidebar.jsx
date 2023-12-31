@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import {HomeRounded , CloseRounded, UploadRounded, LightModeRounded, LogoutRounded, SearchRounded, FavoriteRounded, DarkModeRounded} from "@mui/icons-material"
+import {HomeRounded , CloseRounded, UploadRounded, LightModeRounded, LogoutRounded, SearchRounded, FavoriteRounded, DarkModeRounded, MenuOpen} from "@mui/icons-material"
 import LogoImage from "../images/Logo.png";
 import {Link} from "react-router-dom";
 
@@ -16,21 +16,22 @@ color : ${({theme})=> theme.text_primary};
     z-index:1000;
     width: 100%;
     max-width:250px;
-    left : ${({setMenuOpen})=>(setMenuOpen ? "0": "-100%")};
+    left : ${({menuOpen})=>(menuOpen ? "0": "-100%")};
     transition: 0.3s ease-in-out;
 }
 `;
  
 const Flex = styled.div`
+   
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    
+    justify-content: space-between;
+    padding: 0px 12px
 `;
 
 const Logo = styled.div`
-    width: 100%;
+   
     color: ${({theme})=> theme.primary};
     display:flex;
     align-items: center;
@@ -46,7 +47,7 @@ height:40px;
 `; 
 
 const Close = styled.div`
-    // display: none;
+    display: none;
     @media(max-width:1100px){
         display :block;
     }
@@ -74,15 +75,16 @@ const NavText = styled.div`
 const HR = styled.div`
    width: 100%;
    height: 1px;
-   background-color: ${({theme})=> theme.text_secondary};
+   background-color: ${({theme})=> theme.text_secondary+50};
    margin : 10px 0px;
 `;
 
  
 const Sidebar = ({
+    menuOpen,
     setMenuOpen, 
     setDardMode,
-     darkMode
+     darkMode,
 }) => {
     const menuItems =[
         {
@@ -121,12 +123,12 @@ const Sidebar = ({
               },
            ];
   return (
-    <MenuContainer setMenuOpen={setMenuOpen}>
+    <MenuContainer menuOpen={menuOpen}>
         <Flex>
         <Logo>
             <Image src={LogoImage}/>
-            Podstream</Logo>
-     <Close>
+            PODSTREAM</Logo>
+     <Close onClick={()=>setMenuOpen(false)}>
         <CloseRounded/>
      </Close>
         </Flex>

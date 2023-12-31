@@ -4,6 +4,7 @@ import {lightTheme , darkTheme} from "./utils/Themes";
 import "./index.css";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter } from "react-router-dom";
+import NavBar from "./components/NavBar";
 
 
 const Container  = styled.div`
@@ -30,12 +31,12 @@ function App() {
   <ThemeProvider theme  = {darkMode ? darkTheme : lightTheme}>
     <BrowserRouter>
     <Container > 
-    <Sidebar 
-    setMenuOpen={setMenuOpen} 
-    setDardMode ={setDardMode}
-     darkMode={darkMode}
-      />
-    <Frame>PodStream</Frame>  
+      {menuOpen && (
+    <Sidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen}  setDardMode ={setDardMode}  darkMode={darkMode}    />)}
+    <Frame>
+      <NavBar   menuOpen={menuOpen}
+    setMenuOpen={setMenuOpen} />
+      PodStream</Frame>  
      </Container>
      </BrowserRouter>
   
