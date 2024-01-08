@@ -98,8 +98,8 @@ const Sidebar = ({
            icon: <SearchRounded/>
           },
           {
-           link: "/favorites",
-           name: "favorites",
+           link: "/favourites",
+           name: "Favourites",
            icon: <FavoriteRounded/>
           },
           

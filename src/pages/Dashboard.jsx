@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import PodcastCard from '../components/PodcastCard';
 
 const DashboardMain = styled.div`
     padding : 20px 30px;
@@ -40,21 +41,48 @@ const Span = styled.div`
     color : ${({theme})=>theme.primary};
     font-size : 16px;
     font-weight :400px;
+    @media(max-width:768px){
+      font-size :14px;
+    
+    }
 `;
 
-const Podcasts = styled.div``;
+const Podcasts = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 18px 6px;
+    @media(max-width:550px){
+      justify-content: center;
+    }
+`;
 
 function Dashboard() {
   return <DashboardMain>
         <FilterContainer>
           <Topic>
             Most Popular
-            <Link>
+            <Link to = {`/showpodcasts/mostpopular`} style = {{ textDecoration: "none"}} >
             <Span> Show All</Span>
             </Link>
           </Topic>
           <Podcasts>
-            Hi
+            <PodcastCard/>
+            <PodcastCard/>
+            <PodcastCard/>
+          
+          </Podcasts>
+        </FilterContainer>
+        <FilterContainer>
+          <Topic>
+           Comedy
+            <Link to = {`/showpodcasts/mostpopular`} style = {{ textDecoration: "none"}} >
+            <Span> Show All</Span>
+            </Link>
+          </Topic>
+          <Podcasts>
+          <PodcastCard/>
+          <PodcastCard/>
           </Podcasts>
         </FilterContainer>
   </DashboardMain>;
