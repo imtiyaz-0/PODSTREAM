@@ -40,6 +40,7 @@ function App() {
     <Frame>
       <NavBar   menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Routes>
+        
         <Route path ="/" exact element = {<Dashboard/>}/>
         <Route path ="/search" exact element = {<Search/>} />
         <Route path ="/favourites" exact element = {<Favourites/>} />
