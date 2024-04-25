@@ -83,7 +83,6 @@ const Episodecard = ({ episode, podid, user, type, index }) => {
         <Card onClick={async () => {
             await addviewtToPodcast();
             if (type === "audio") {
-                //open audio player
                 dispatch(
                     openPlayer({
                         type: "audio",
@@ -94,7 +93,6 @@ const Episodecard = ({ episode, podid, user, type, index }) => {
                     })
                 )
             } else {
-                //open video player
                 dispatch(
                     dispatch(
                         openPlayer({

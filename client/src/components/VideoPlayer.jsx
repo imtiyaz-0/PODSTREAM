@@ -108,8 +108,7 @@ const VideoPlayer = ({ episode, podid, currenttime, index }) => {
     }
 
     const goToNextPodcast = () => {
-        //from the podid and index, get the next podcast
-        //dispatch the next podcast
+        
         if (podid.episodes.length === index + 1) {
             dispatch(
                 openSnackbar({
@@ -134,8 +133,7 @@ const VideoPlayer = ({ episode, podid, currenttime, index }) => {
     }
 
     const goToPreviousPodcast = () => {
-        //from the podid and index, get the next podcast
-        //dispatch the next podcast
+  
         if (index === 0) {
             dispatch(
                 openSnackbar({

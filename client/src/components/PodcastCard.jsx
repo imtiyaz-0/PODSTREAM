@@ -170,7 +170,6 @@ export const PodcastCard = ({ podcast, user, setSignInOpen }) => {
   }
 
   React.useEffect(() => {
-    //favorits is an array of objects in which each object has a podcast id match it to the current podcast id
     if (user?.favorits?.find((fav) => fav._id === podcast._id)) {
       setFavourite(true)
     }

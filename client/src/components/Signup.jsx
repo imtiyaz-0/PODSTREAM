@@ -344,7 +344,7 @@ const SignUp = ({ setSignUpOpen, setSignInOpen }) => {
   
   
     const theme = useTheme();
-    //ssetSignInOpen(false)
+    //setSignInOpen(false)
     return (
       <Modal open={true} onClose={() => dispatch(closeSignin())}>
         <Container>

@@ -19,7 +19,6 @@ export const createPodcast = async (req, res, next) => {
             episodeList.push(savedEpisode._id)
         }));
 
-        // Create a new podcast
         const podcast = new Podcasts(
             {
                 creator: user.id, episodes: episodeList,
@@ -33,7 +32,6 @@ export const createPodcast = async (req, res, next) => {
         );
         const savedPodcast = await podcast.save();
 
-        //save the podcast to the user
         await User.findByIdAndUpdate(user.id, {
             $push: { podcasts: savedPodcast.id },
 
@@ -57,7 +55,6 @@ export const addepisodes = async (req, res, next) => {
             const savedEpisode = await episode.save();
 
 
-            // update the podcast
             await Podcasts.findByIdAndUpdate(
                 req.body.podid, {
                 $push: { episodes: savedEpisode.id },
@@ -77,7 +74,6 @@ export const addepisodes = async (req, res, next) => {
 
 export const getPodcasts = async (req, res, next) => {
     try {
-        // Get all podcasts from the database
         const podcasts = await Podcasts.find().populate("creator", "name img").populate("episodes");
         return res.status(200).json(podcasts);
     } catch (err) {
@@ -87,7 +83,6 @@ export const getPodcasts = async (req, res, next) => {
 
 export const getPodcastById = async (req, res, next) => {
     try {
-        // Get the podcasts from the database
         const podcast = await Podcasts.findById(req.params.id).populate("creator", "name img").populate("episodes");
         return res.status(200).json(podcast);
     } catch (err) {
@@ -96,7 +91,6 @@ export const getPodcastById = async (req, res, next) => {
 };
 
 export const favoritPodcast = async (req, res, next) => {
-    // Check if the user is the creator of the podcast
     const user = await User.findById(req.user.id);
     const podcast = await Podcasts.findById(req.body.id);
     let found = false;
@@ -104,10 +98,8 @@ export const favoritPodcast = async (req, res, next) => {
         return next(createError(403, "You can't favorit your own podcast!"));
     }
 
-    // Check if the podcast is already in the user's favorits
     await Promise.all(user.favorits.map(async (item) => {
         if (req.body.id == item) {
-            //remove from favorite
             found = true;
             console.log("this")
             await User.findByIdAndUpdate(user.id, {
@@ -129,7 +121,6 @@ export const favoritPodcast = async (req, res, next) => {
     }
 }
 
-//add view 
 
 export const addView = async (req, res, next) => {
     try {
@@ -144,7 +135,6 @@ export const addView = async (req, res, next) => {
   
 
 
-//searches
 export const random = async (req, res, next) => {
     try {
         const podcasts = await Podcasts.aggregate([{ $sample: { size: 40 } }]).populate("creator", "name img").populate("episodes");
